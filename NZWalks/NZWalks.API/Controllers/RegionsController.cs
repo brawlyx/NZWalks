@@ -18,8 +18,8 @@ namespace NZWalks.API.Controllers
             this.regionRepository = regionRepository;
             this.mapper = mapper;
         }
-        [HttpGet] 
-        public async Task<IActionResult> GetAllRegions() {
+        [HttpGet]
+        public async Task<IActionResult> GetAllRegionsAsync() {
 
             /* var regions = new List<Region>()                         //this is a static list, this will be removed because
                 {                                                          we are getting data from the database          
@@ -74,8 +74,23 @@ namespace NZWalks.API.Controllers
             */
 
             var regionsDTO = mapper.Map<List<Models.DTO.Region>>(regions);
-            return Ok(regionsDTO); 
+            return Ok(regionsDTO);
         }
 
+        [HttpGet]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> GetRegionAsync(Guid id)
+        {
+            var region = await  regionRepository.GetAsync(id);
+
+            if(region == null)
+            {
+                return NotFound();
+            }
+
+            var regionDTO = mapper.Map<Models.DTO.Region>(region);
+
+            return Ok(regionDTO);
+        }
     }
 }
