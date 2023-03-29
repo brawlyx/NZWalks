@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Repositories;
@@ -7,7 +8,7 @@ namespace NZWalks.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-
+    [Authorize]
     public class RegionsController : Controller
     {
         private readonly IRegionRepository regionRepository;
@@ -98,10 +99,10 @@ namespace NZWalks.API.Controllers
         public async Task<IActionResult> AddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
         {
             //validate the request
-            if (!ValidateAddRegionRequest(addRegionRequest))
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ValidateAddRegionRequest(addRegionRequest))
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             //request to domain model
             var region = new Models.Domain.Region()
