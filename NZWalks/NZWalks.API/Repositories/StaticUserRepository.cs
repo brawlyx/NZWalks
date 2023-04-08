@@ -9,7 +9,7 @@ namespace NZWalks.API.Repositories
         {
             new User()
             {
-                FirstName = "ReadOnly", LastName = "User", EmailAddress = "readonly@user.com", Id = Guid.NewGuid(), Username = "readonly@user.com",
+                FirstName = "Read Only", LastName = "User", EmailAddress = "readonly@user.com", Id = Guid.NewGuid(), Username = "readonly@user.com",
                 Password = "Readonly@user", Roles = new List<string> { "reader" }
             },
             new User()
